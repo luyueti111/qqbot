@@ -17,12 +17,13 @@ async def get_song_id(song: str):
         for cookie in cookieslist:
             driver.add_cookie(cookie)
     driver.refresh()
-
+    time.sleep(1.5)
     driver.switch_to.frame(driver.find_element(by=By.ID, value="g_iframe"))
-    time.sleep(3)
+    time.sleep(1)
 
     song_id = driver.find_element(by=By.CLASS_NAME, value="text").find_element(By.XPATH, './*')
     href = song_id.get_attribute('href')
     song_id = href.split('id=')[1]
     driver.close()
+
     return song_id

@@ -7,7 +7,7 @@ from .data_source import get_song_id
 async def music(session: CommandSession):
     query = session.current_arg_text.strip()
     if not query:
-        query = "约定"
+        query = "一生所爱"
     song_id = await get_song_id(query)
     await session.send({
         "type": "music",
