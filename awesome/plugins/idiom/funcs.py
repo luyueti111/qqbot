@@ -6,7 +6,6 @@ with open("/Users/luyueti/Desktop/code/qqbot/awesome/plugins/idiom/idiom.json", 
 
 
 async def is_legal(word_from_user, word_from_bot=None):
-
     word_from_user_in_db = [w for w in data if w['word'] == word_from_user]
 
     if not word_from_user_in_db:
