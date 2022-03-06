@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<msg serviceID="2" templateID="1" action="web" brief="&#91;分享&#93; {}" sourceMsgId="0"
+     url="{}" flag="0" adverSign="0" multiMsgFlag="0">
+    <item layout="2">
+        <audio cover="{}"
+               src="{}"/>
+        <title>{}</title>
+        <summary>{}</summary>
+    </item>
+    <source name="bilibili"
+            url="http://web.p.qq.com/qqmpmobile/aio/app.html?id=1101079856" action="app"
+            a_actionData="com.netease.cloudmusic" i_actionData="tencent100495085://" appid="100495085"/>
+</msg>
