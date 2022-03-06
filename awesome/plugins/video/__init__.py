@@ -2,6 +2,10 @@ from nonebot import on_command, CommandSession
 
 from .data_source import get_video_info
 
+__plugin_name__ = '视频'
+__plugin_usage__ = r"""视频搜索
+/video  [关键词]
+"""
 
 @on_command('video')
 async def video(session: CommandSession):
