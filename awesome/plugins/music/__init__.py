@@ -2,10 +2,8 @@ from nonebot import on_command, CommandSession
 
 from .data_source import get_song_id
 
-__plugin_name__ = '音乐'
-__plugin_usage__ = r"""音乐搜索
-/music  [关键词]
-"""
+__plugin_name__ = '音乐搜素'
+__plugin_usage__ = "/music  [关键词]"
 
 
 @on_command('music')

@@ -2,10 +2,8 @@ from nonebot import on_command, CommandSession
 
 from .data_source import get_weather_of_city
 
-__plugin_name__ = '天气'
-__plugin_usage__ = r"""天气查询 
-/weather  [城市名称]
-"""
+__plugin_name__ = '天气查询'
+__plugin_usage__ = "/weather  [城市名称]"
 
 
 @on_command('weather', aliases=('天气', '天气预报', '查天气'))

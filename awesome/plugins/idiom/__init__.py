@@ -5,9 +5,7 @@ from .funcs import is_legal, get_word, get_end_py
 
 
 __plugin_name__ = '成语接龙'
-__plugin_usage__ = r"""成语接龙游戏
-/game  [开始词/成语]
-"""
+__plugin_usage__ = "/game  [开始词/成语]"
 
 
 @on_command('game', aliases=('games', "成语接龙"))
