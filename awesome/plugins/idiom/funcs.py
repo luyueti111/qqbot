@@ -1,7 +1,8 @@
 import json
+import os
 from random import sample
 
-with open("/Users/luyueti/Desktop/code/qqbot/awesome/plugins/idiom/idiom.json", "r") as f:
+with open("{}/awesome/plugins/idiom/idiom.json".format(os.getcwd()), "r") as f:
     data = json.load(f)
 
 

@@ -1,4 +1,5 @@
 import json
+import os
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -12,7 +13,7 @@ async def get_song_id(song: str):
     driver.get(url)
     driver.delete_all_cookies()
 
-    with open('/Users/luyueti/Desktop/code/qqbot/awesome/plugins/music/cookies.txt', 'r') as cookief:
+    with open('{}/awesome/plugins/music/cookies.txt'.format(os.getcwd()), 'r') as cookief:
         cookieslist = json.load(cookief)
         for cookie in cookieslist:
             driver.add_cookie(cookie)

@@ -1,3 +1,5 @@
+import os
+
 from nonebot import on_command, CommandSession
 
 from .data_source import get_video_info
@@ -13,7 +15,7 @@ async def video(session: CommandSession):
         query = "一生所爱"
 
     url, title, content, cover = await get_video_info(query)
-    with open("/Users/luyueti/Desktop/code/qqbot/awesome/plugins/video/temp_json.txt", "r") as f:
+    with open("{}/awesome/plugins/video/temp_json.txt".format(os.getcwd()), "r") as f:
         xml = f.read().format(title, url, cover, url, title, content)
 
     await session.send({

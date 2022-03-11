@@ -1,10 +1,11 @@
+import os
+
 import pandas as pd
 import requests
 
 
 async def get_weather_of_city(city: str) -> str:
-    city_df = pd.read_excel("/Users/luyueti/Desktop/code/qqbot/awesome/plugins/weather/AMap_adcode_citycode_20210406"
-                            ".xlsx")
+    city_df = pd.read_excel("{}/awesome/plugins/weather/AMap_adcode_citycode_20210406.xlsx".format(os.getcwd()))
     temp = city_df[city_df.apply(lambda x: city in x["中文名"], 1)]
     if len(temp) == 0:
         return "输入的城市不存在，请尝试使用更短的名称输入（如'运城市'改为'运城'）"

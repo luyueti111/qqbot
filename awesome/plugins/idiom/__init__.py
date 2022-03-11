@@ -1,3 +1,5 @@
+import os
+
 from nonebot import on_command, CommandSession
 import json
 from random import sample
@@ -11,7 +13,7 @@ __plugin_usage__ = "/game  [开始词/成语]"
 @on_command('game', aliases=('games', "成语接龙"))
 async def game(session: CommandSession):
     word_from_user = session.current_arg_text.strip()
-    with open("/Users/luyueti/Desktop/code/qqbot/awesome/plugins/idiom/idiom.json", "r") as f:
+    with open("{}/awesome/plugins/idiom/idiom.json".format(os.getcwd()), "r") as f:
         data = json.load(f)
 
     if not word_from_user:
