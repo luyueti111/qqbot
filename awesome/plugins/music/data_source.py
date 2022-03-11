@@ -8,11 +8,20 @@ import time
 
 
 async def get_song_id(song: str):
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--window-size=1920,1080')
+    chrome_options = Options()
     chrome_options.add_argument('--headless')
+    chrome_options.set_capability(
+        'unhandledPromptBehavior', 'accept')
+    chrome_options.add_argument("--window-size=1920,1050")
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument(
+        '--disable-software-rasterizer')  # 解决GL报错问题
+    chrome_options.add_argument('--disable-extensions')
     chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--mute-audio')  # 关闭声音
+    chrome_options.add_argument('--window-position=700,0')
+    chrome_options.add_argument('--log-level=3')
 
     driver = webdriver.Chrome(chrome_options=chrome_options)
 
