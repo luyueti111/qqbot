@@ -8,6 +8,8 @@ import time
 
 
 async def get_song_id(song: str):
+    os.environ['DISPLAY'] = ':0'
+    os.environ['XAUTHORITY'] = '/run/user/1000/gdm/Xauthority'
     chrome_options = Options()
     chrome_options.add_argument('--headless')
     chrome_options.set_capability(
