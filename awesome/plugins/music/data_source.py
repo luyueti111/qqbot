@@ -120,5 +120,5 @@ class Music_api():
 
 
 async def get_song_id(query):
-    return Music_api().get_music_list("矜持")[0]['id']
+    return Music_api().get_music_list(query)[0]['id']
 
