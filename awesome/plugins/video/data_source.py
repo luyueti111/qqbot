@@ -1,40 +1,44 @@
 import json
 import os
+import re
 
+import bs4
+import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 import random
 
 
-async def get_video_info(q: str):
-    driver = webdriver.Chrome()
-    url = "https://search.bilibili.com/all?keyword={}".format(q)
-    driver.get(url)
+import requests_html
 
-    driver.delete_all_cookies()
-    with open('{}/awesome/plugins/video/cookies.txt'.format(os.getcwd()), 'r') as cookief:
-        cookieslist = json.load(cookief)
-        for cookie in cookieslist:
-            driver.add_cookie(cookie)
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                  "AppleWebKit/537.36(KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36"
+}
 
-    driver.refresh()
-    time.sleep(3)
 
-    rand = random.randint(1, 3)
-    video_card = driver.find_element(by=By.XPATH,
-                                     value='//*[@id="all-list"]/div[1]/div[2]/ul/li[{}]/a'.format(rand))
-    url = video_card.get_attribute("href")
-    url = url.split("?")[0]
+def get_cover(bv):
+    Catch = requests.get(url=bv, headers=headers)
+    Cover_url = re.findall('rel="apple-touch-icon" href="(.*?)@57w_57h_1c.png"', Catch.text)[0]
+    bs0up = bs4.BeautifulSoup(Catch.content, "lxml")
+    up = bs0up.find_all('a', {"class": "username"})[0]
+    intro = bs0up.find_all('span', {"class": "desc-info-text"})
+    if not intro:
+        intro.text = '暂无介绍'
+    return Cover_url, up.text.strip(), intro.text.strip()
 
-    title = video_card.get_attribute("title")
 
-    cover = driver.find_element(by=By.XPATH,
-                                value="//*[@id=\"all-list\"]/div[1]/div[2]/ul/li[{}]/a/div/div[1]/img".format(rand))
-    cover = cover.get_attribute("src")
+async def get_video_info(query):
+    url = 'https://search.bilibili.com/all?keyword={}'.format(query)
+    req = requests_html.HTMLSession()
+    responses = req.get(url, headers=headers)
+    bsp = bs4.BeautifulSoup(responses.content, "lxml")
+    tlt = bsp.find_all('a', {"class": "img-anchor"})[0]
 
-    content = driver.find_element(by=By.XPATH,
-                                  value="//*[@id=\"all-list\"]/div[1]/div[2]/ul/li[{}]/div/div[3]/span[4]/a".format(rand)).text
-    content = "来自up:"+content
-    driver.close()
-    return url, title, content, cover
+    href = 'https://' + tlt.attrs['href'][2:]
+
+    title = tlt.attrs['title']
+    cover, content, intro = get_cover(href)
+    return href, title, content, cover
+
