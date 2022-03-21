@@ -106,6 +106,7 @@ class Music_api():
         music_list = []
         for offset in range(1):
             result = Music_api().search(keywords, str(offset))
+            print('result')
             result = result['result']['songs']
             for music in result:
                 # if music['copyright'] == 1 and music['fee'] == 8:
