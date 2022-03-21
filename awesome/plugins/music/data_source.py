@@ -106,7 +106,7 @@ class Music_api():
         music_list = []
         for offset in range(1):
             result = Music_api().search(keywords, str(offset))
-            print('result')
+            print(result)
             result = result['result']['songs']
             for music in result:
                 # if music['copyright'] == 1 and music['fee'] == 8:
@@ -123,3 +123,4 @@ class Music_api():
 async def get_song_id(query):
     return Music_api().get_music_list(query)[0]['id']
 
+print(Music_api().get_music_list('矜持')[0]['id'])
